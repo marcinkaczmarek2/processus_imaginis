@@ -57,3 +57,5 @@ elif command == '--contrast':
 else:
     print("Unknown command: " + command)
 print("")
+
+#NOISE FILTER CHOSEN : (N3) Alpha-trimmed mean filter (--alpha), contraharmonic mean filter (--cmean)
