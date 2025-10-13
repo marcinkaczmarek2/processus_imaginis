@@ -3,7 +3,9 @@ Repository for the Image Processing course
 
 requirements:
 -Python 3.13
+
 -Public Image Ltd (PiL)
+
 -NumPy
 
 ```bash
