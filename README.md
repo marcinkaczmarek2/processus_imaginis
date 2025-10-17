@@ -16,7 +16,7 @@ pip install numpy
 
 example usage:
 ```bash
-python .\processus_imaginis.py --brightness -100
+python .\processus_imaginis.py mandril.bmp --brightness 100
 ```
 
 now new file in directory - result.bmp 😊😊😊
