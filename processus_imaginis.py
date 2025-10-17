@@ -8,20 +8,32 @@ import sys
 
 def doBrightness(factor, image):
     arr = np.array(image.getdata())
-    if arr.ndim == 1: #grayscale i binary
-        numColorChannels = 1
-        arr = arr.reshape(image.size[1], image.size[0])
-    else:
-        numColorChannels = arr.shape[1] #RGB/RGBA
-        arr = arr.reshape(image.size[1], image.size[0], numColorChannels)
     try:
         factor = float(factor)
     except ValueError:
         print("Wrong factor value, image will remain unchanged.")
         return arr
-    arr = arr + factor
-    arr[arr > 255] = 255
-    arr[arr < 0] = 0
+    if arr.ndim == 1: #grayscale i binary
+        numColorChannels = 1
+        arr = arr.reshape(image.size[1], image.size[0])
+        for i in range(arr.shape[0]):
+            for j in range(arr.shape[1]):
+                arr[i][j]+=factor
+                if arr[i][j] > 255:
+                    arr[i][j] = 255
+                elif arr[i][j] < 0:
+                    arr[i][j] = 0
+    else:
+        numColorChannels = arr.shape[1] #RGB/RGBA
+        arr = arr.reshape(image.size[1], image.size[0], numColorChannels)
+        for i in range(arr.shape[0]):
+            for j in range(arr.shape[1]):
+                for k in range(arr.shape[2]):
+                    arr[i][j][k]+=factor
+                    if arr[i][j][k] > 255:
+                        arr[i][j][k] = 255
+                    elif arr[i][j][k] < 0:
+                        arr[i][j][k] = 0
     print("Function doBrightness invoked with factor: " + str(factor))
     return arr
 
